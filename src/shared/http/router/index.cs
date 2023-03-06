@@ -5,6 +5,6 @@ var router = builder.Build();
 
 router.MapGet("/receptionist");
 
-
+router.Run();
 
 
