@@ -1,6 +1,10 @@
- namespace ReceptionistNameSpace
-{
+using Microsoft.AspNetCore.Components;
+
+namespace ReceptionistNameSpace
+{ 
+  [Route("/receptionist/create")] 
   public class CreateReceptionistController{
+
     CreateReceptionistUseCase createReceptionistUseCase;
     public CreateReceptionistController(CreateReceptionistUseCase createReceptionistUseCase){
       this.createReceptionistUseCase = createReceptionistUseCase;
