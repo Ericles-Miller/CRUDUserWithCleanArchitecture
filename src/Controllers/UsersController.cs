@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using src.configs.DataBase;
 using src.Models.Users.infra.Entities;
+namespace src.Controllers;
 
-namespace src.Controllers
-{
   [ApiController]
   [Route("users")]
-  class UsersController : ControllerBase
+  public class UsersController : ControllerBase
   {
     [HttpGet]
-    [Route("/")]
-    public List<Users> Handle([FromServices] Connection context)
-    {
+    public List<Users> Handle([FromServices] AppDbContext context)
+    { 
       return context.Users.ToList();
     }
+
   }
-}
