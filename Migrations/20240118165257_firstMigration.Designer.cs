@@ -10,8 +10,8 @@ using src.configs.DataBase;
 
 namespace bookStore.Migrations
 {
-    [DbContext(typeof(Connection))]
-    [Migration("20240117194238_firstMigration")]
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20240118165257_firstMigration")]
     partial class firstMigration
     {
         /// <inheritdoc />

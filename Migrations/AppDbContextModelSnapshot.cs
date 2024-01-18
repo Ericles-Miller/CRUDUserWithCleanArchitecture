@@ -9,8 +9,8 @@ using src.configs.DataBase;
 
 namespace bookStore.Migrations
 {
-    [DbContext(typeof(Connection))]
-    partial class ConnectionModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
