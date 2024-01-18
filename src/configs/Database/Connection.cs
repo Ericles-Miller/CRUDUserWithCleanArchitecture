@@ -11,6 +11,5 @@ namespace src.configs.DataBase
     // connection string
     protected override void OnConfiguring(DbContextOptionsBuilder options) => 
       options.UseSqlite("DataSource=app.db;Cache=Shared");
-    
   }
 }
