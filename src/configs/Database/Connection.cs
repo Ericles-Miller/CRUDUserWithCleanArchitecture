@@ -3,7 +3,8 @@ using src.Models.Users.infra.Entities;
 
 namespace src.configs.DataBase
 {
-  public class Connection : DbContext {
+  public class Connection : DbContext 
+  {
     // import entity class
     public DbSet<Users> Users { get; set; }
     
