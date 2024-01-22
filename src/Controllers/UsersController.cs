@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using src.configs.DataBase;
 using src.Models.Users.infra.Entities;
 namespace src.Controllers;
@@ -8,24 +9,28 @@ namespace src.Controllers;
   public class UsersController : ControllerBase
   {
     [HttpGet]
-    public List<Users> Get([FromServices] AppDbContext context)
+    public async Task<IActionResult> Get([FromServices] AppDbContext context)
     { 
-      return context.Users.ToList();
+     var users = await context.Users.ToListAsync();
+
+     return Ok(users);
     }
 
     [HttpPost]
-    public Users Post([FromBody] Users user, [FromServices] AppDbContext context) 
+    public async Task<IActionResult> Post([FromBody] Users user, [FromServices] AppDbContext context) 
     {
-      context.Users.Add(user);
-      context.SaveChanges();
+      await context.Users.AddAsync(user);
+      await context.SaveChangesAsync();
 
-      return user;
+      return Ok(user);
     }
 
-    [HttpGet("{id}")]
-    public Users GetById(string id, [FromServices] AppDbContext context)
+    [HttpGet("findUser/{id}")]
+    public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
     { 
-      return context.Users.FirstOrDefault(user => user.Id == id);
+      var user = await context.Users.FirstOrDefaultAsync(user => user.Id == id);
+
+      return Ok(user);
     }
 
     [HttpPut("{id}")]
