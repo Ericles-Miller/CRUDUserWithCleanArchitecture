@@ -19,19 +19,21 @@ namespace src.Controllers;
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Users user, [FromServices] AppDbContext context) 
     {
+    
       await context.Users.AddAsync(user);
       await context.SaveChangesAsync();
 
       return Ok(user);
     }
 
-    [HttpGet("findUser/{id}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
     { 
       var user = await context.Users.FirstOrDefaultAsync(user => user.Id == id);
 
       return Ok(user);
     }
+
 
     [HttpPut("{id}")]
     public Users Put(string id, [FromBody] Users user, [FromServices] AppDbContext context) 
