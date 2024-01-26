@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using src.configs.DataBase;
-using src.Models.Users.infra.Entities;
-namespace src.Controllers;
+using Src.Configs.DataBase;
+using Src.Models.Users.Infra.Entities;
+namespace Src.Controllers;
 
   [Route("/users")]
   [ApiController]
@@ -17,11 +17,10 @@ namespace src.Controllers;
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Users user, [FromServices] AppDbContext context) 
+    public async Task<IActionResult> Post([FromBody] User user, [FromServices] AppDbContext context) 
     {
     
-      await context.Users.AddAsync(user);
-      await context.SaveChangesAsync();
+     
 
       return Ok(user);
     }
@@ -29,14 +28,13 @@ namespace src.Controllers;
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
     { 
-      var user = await context.Users.FirstOrDefaultAsync(user => user.Id == id);
-
+      
       return Ok(user);
     }
 
 
     [HttpPut("{id}")]
-    public Users Put(string id, [FromBody] Users user, [FromServices] AppDbContext context) 
+    public User Put(string id, [FromBody] User user, [FromServices] AppDbContext context) 
     { 
       var findUser = context.Users.FirstOrDefault(user => user.Id == id);
       if(findUser == null) {
@@ -54,7 +52,7 @@ namespace src.Controllers;
     }
 
     [HttpDelete("{id}")]
-    public Users Delete(string id, [FromServices] AppDbContext context)
+    public User Delete(string id, [FromServices] AppDbContext context)
     { 
       var findUser = context.Users.FirstOrDefault(user => user.Id == id);
       if(findUser == null) {

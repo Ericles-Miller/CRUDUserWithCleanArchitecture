@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using src.configs.DataBase;
+using Src.configs.DataBase;
 
 #nullable disable
 
@@ -17,7 +17,7 @@ namespace bookStore.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
-            modelBuilder.Entity("src.Models.Users.infra.Entities.Users", b =>
+            modelBuilder.Entity("Src.Models.Users.Infra.Entities.Users", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");

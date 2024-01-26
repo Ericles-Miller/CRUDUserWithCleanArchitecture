@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using src.Models.Users.infra.Entities;
+using Src.Models.Users.Infra.Entities;
 
-namespace src.configs.DataBase
+namespace Src.Configs.DataBase
 {
   public class AppDbContext : DbContext 
   {
     // import entity class
-    public DbSet<Users> Users { get; set; }
+    public DbSet<User> Users { get; set; }
     
     // connection string
     protected override void OnConfiguring(DbContextOptionsBuilder options) => 
