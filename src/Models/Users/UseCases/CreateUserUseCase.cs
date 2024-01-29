@@ -1,10 +1,9 @@
-using Src.Models.Users.Infra.DTOs;
 using Src.Models.Users.Infra.Entities;
 using Src.Models.Users.Infra.Repositories;
 
 namespace Src.Models.Users.UseCases;
 
-public class CreateUserUseCase
+public class CreateUserUseCase 
 {
   private IUserRepository _usersRepository;
   public CreateUserUseCase(IUserRepository userRepository)
