@@ -207,7 +207,7 @@ PublishScripts/
 # except build/, which is used as an MSBuild target.
 !**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
-#!**/[Pp]ackages/repositories.config
+#!**/[Pp]ackages/repositories.Config
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
 *.nuget.targets
@@ -335,13 +335,13 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/**
-# !tools/packages.config
+# !tools/packages.Config
 
 # Tabs Studio
 *.tss
 
-# Telerik's JustMock configuration file
-*.jmconfig
+# Telerik's JustMock Configuration file
+*.jmConfig
 
 # BizTalk build output
 *.btp.cs
@@ -358,7 +358,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
-# NVidia Nsight GPU debugger configuration file
+# NVidia Nsight GPU debugger Configuration file
 *.nvuser
 
 # MFractors (Xamarin productivity tool) working folder
@@ -413,8 +413,8 @@ FodyWeavers.xsd
 Makefile.in
 *.userprefs
 *.usertasks
-config.make
-config.status
+Config.make
+Config.status
 aclocal.m4
 install-sh
 autom4te.cache/
@@ -464,7 +464,7 @@ ehthumbs_vista.db
 # Dump file
 *.stackdump
 
-# Folder config file
+# Folder Config file
 [Dd]esktop.ini
 
 # Recycle Bin used on file shares

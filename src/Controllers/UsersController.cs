@@ -1,35 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using src.configs.DataBase;
-using src.Models.Users.infra.Entities;
-namespace src.Controllers;
+using Microsoft.EntityFrameworkCore;
+using Src.Configs.DataBase;
+using Src.Models.Users.Infra.Entities;
+using Src.Models.Users.UseCases;
+namespace Src.Controllers;
 
   [Route("/users")]
   [ApiController]
   public class UsersController : ControllerBase
   {
+    private readonly CreateUserUseCase _createUserUseCase;
+
+    public UsersController(CreateUserUseCase createUserUseCase)
+    {
+      _createUserUseCase = createUserUseCase;
+    }
+
     [HttpGet]
-    public List<Users> Get([FromServices] AppDbContext context)
+    public async Task<IActionResult> Get([FromServices] AppDbContext context)
     { 
-      return context.Users.ToList();
+     var users = await context.Users.ToListAsync();
+
+     return Ok(users);
     }
 
     [HttpPost]
-    public Users Post([FromBody] Users user, [FromServices] AppDbContext context) 
+    public async Task<IActionResult> Post([FromBody] User user, [FromServices] AppDbContext context) 
     {
-      context.Users.Add(user);
-      context.SaveChanges();
-
-      return user;
+      await _createUserUseCase.Execute(user);
+      return Ok(user);
     }
 
     [HttpGet("{id}")]
-    public Users GetById(string id, [FromServices] AppDbContext context)
+    public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
     { 
-      return context.Users.FirstOrDefault(user => user.Id == id);
+      
+      return Ok(user);
     }
 
+
     [HttpPut("{id}")]
-    public Users Put(string id, [FromBody] Users user, [FromServices] AppDbContext context) 
+    public User Put(string id, [FromBody] User user, [FromServices] AppDbContext context) 
     { 
       var findUser = context.Users.FirstOrDefault(user => user.Id == id);
       if(findUser == null) {
@@ -47,7 +58,7 @@ namespace src.Controllers;
     }
 
     [HttpDelete("{id}")]
-    public Users Delete(string id, [FromServices] AppDbContext context)
+    public User Delete(string id, [FromServices] AppDbContext context)
     { 
       var findUser = context.Users.FirstOrDefault(user => user.Id == id);
       if(findUser == null) {
