@@ -6,4 +6,5 @@ namespace Src.Models.Users.Infra.Repositories;
 public interface IUserRepository {
   Task Create(User user);
   Task<bool> UserAlreadyExists(string id);
+  Task<List<User>> ListUsers();
 }

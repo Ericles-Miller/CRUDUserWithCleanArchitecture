@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Src.Configs.DataBase;
 using Src.Models.Users.Infra.Entities;
 using Src.Models.Users.UseCases;
+
 namespace Src.Controllers;
 
   [Route("/users")]
@@ -10,33 +11,34 @@ namespace Src.Controllers;
   public class UsersController : ControllerBase
   {
     private readonly CreateUserUseCase _createUserUseCase;
-
-    public UsersController(CreateUserUseCase createUserUseCase)
+    private readonly ListUserUseCase _listUserUseCase;
+    
+    public UsersController(CreateUserUseCase createUserUseCase, ListUserUseCase listUserUseCase)
     {
       _createUserUseCase = createUserUseCase;
+      _listUserUseCase = listUserUseCase;
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get([FromServices] AppDbContext context)
+    public async Task<IActionResult> Get()
     { 
-     var users = await context.Users.ToListAsync();
-
-     return Ok(users);
+      var users = await _listUserUseCase.Execute();
+      return Ok(users);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] User user, [FromServices] AppDbContext context) 
+    public async Task<IActionResult> Post([FromBody] User user) 
     {
       await _createUserUseCase.Execute(user);
       return Ok(user);
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
-    { 
+    // [HttpGet("{id}")]
+    // public async Task<IActionResult> GetById(string id, [FromServices] AppDbContext context)
+    // { 
       
-      return Ok(user);
-    }
+    //   return Ok(user);
+    // }
 
 
     [HttpPut("{id}")]
