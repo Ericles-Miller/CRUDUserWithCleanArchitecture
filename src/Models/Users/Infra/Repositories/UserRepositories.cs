@@ -19,6 +19,13 @@ public class UserRepositories : IUserRepository
     await  _context.SaveChangesAsync();
   }
 
+    public async Task Delete(User user)
+    {
+      _context.Remove(user);
+      await _context.SaveChangesAsync();
+
+    }
+
     public async Task<User> ListUserById(string id)
     {
       var user = await _context.Users.FindAsync(id);
@@ -33,7 +40,7 @@ public class UserRepositories : IUserRepository
 
     public async Task<User> UpdateUser(string id, User user)
     {
-      var findUser = _context.Users.FirstOrDefault(user => user.Id == id);
+      var findUser = await  _context.Users.FirstOrDefaultAsync(user => user.Id == id);
       if(findUser == null) 
       {
         return null;

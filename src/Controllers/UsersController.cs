@@ -13,9 +13,11 @@ namespace Src.Controllers;
     private readonly ListUsersUseCase _listUsersUseCase;
     private readonly ListUserUseCase _listUserUseCase;
     private readonly UpdateUserUseCase _updateUserUseCase;
-    
+    private readonly DeleteUserUseCase _deleteUserUseCase;
+
     public UsersController(
       CreateUserUseCase createUserUseCase,
+      DeleteUserUseCase deleteUserUseCase,
       ListUsersUseCase listUsersUseCase,
       ListUserUseCase listUserUseCase,
       UpdateUserUseCase updateUserUseCase
@@ -24,6 +26,7 @@ namespace Src.Controllers;
       _listUsersUseCase = listUsersUseCase;
       _listUserUseCase = listUserUseCase;
       _updateUserUseCase = updateUserUseCase;
+      _deleteUserUseCase = deleteUserUseCase;
     }
 
     [HttpGet]
@@ -55,16 +58,9 @@ namespace Src.Controllers;
     }
 
     [HttpDelete("{id}")]
-    public User Delete(string id, [FromServices] AppDbContext context)
+    public async  Task<IActionResult> Delete(string id)
     { 
-      var findUser = context.Users.FirstOrDefault(user => user.Id == id);
-      if(findUser == null) {
-        return null;
-      }
-
-      context.Users.Remove(findUser);
-      context.SaveChanges();
-
-      return findUser;
+      await _deleteUserUseCase.Execute(id);
+      return Ok();
     }
   }

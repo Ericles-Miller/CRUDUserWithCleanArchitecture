@@ -14,8 +14,9 @@ public static class DependencyInjection
   public static IServiceCollection AddUseCases(this IServiceCollection services)
   {
     services.AddScoped<CreateUserUseCase>();
-    services.AddScoped<ListUsersUseCase>();
+    services.AddScoped<DeleteUserUseCase>();
     services.AddScoped<ListUserUseCase>();
+    services.AddScoped<ListUsersUseCase>();
     services.AddScoped<UpdateUserUseCase>();
     return services;
   }
