@@ -1,8 +1,6 @@
 using Src.Models.Users.Infra.Repositories;
 
 namespace Src.Models.Users.UseCases;
-
-
 public class DeleteUserUseCase {
   private readonly IUserRepository _userRepository;
   public DeleteUserUseCase(IUserRepository userRepository)
