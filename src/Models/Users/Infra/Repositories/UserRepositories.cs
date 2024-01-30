@@ -19,11 +19,34 @@ public class UserRepositories : IUserRepository
     await  _context.SaveChangesAsync();
   }
 
+    public async Task<User> ListUserById(string id)
+    {
+      var user = await _context.Users.FindAsync(id);
+      return user;
+    }
+
     async public Task<List<User>> ListUsers()
     {
       var users = await _context.Users.ToListAsync();
-
       return users;
+    }
+
+    public async Task<User> UpdateUser(string id, User user)
+    {
+      var findUser = _context.Users.FirstOrDefault(user => user.Id == id);
+      if(findUser == null) 
+      {
+        return null;
+      }
+
+      findUser.Email = user.Email;
+      findUser.Name = user.Name;
+      findUser.UserName = user.UserName;
+
+      _context.Users.Update(findUser);
+      await _context.SaveChangesAsync();
+
+      return findUser;
     }
 
     public async Task<bool> UserAlreadyExists(string id)
