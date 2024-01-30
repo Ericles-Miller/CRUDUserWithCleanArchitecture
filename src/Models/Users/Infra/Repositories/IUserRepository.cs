@@ -2,7 +2,8 @@ using Src.Models.Users.Infra.Entities;
 
 namespace Src.Models.Users.Infra.Repositories;
 
-public interface IUserRepository {
+public interface IUserRepository 
+{
   Task Create(User user);
   Task Delete(User user);
   Task<User> ListUserById(string id);

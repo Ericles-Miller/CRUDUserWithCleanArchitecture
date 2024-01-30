@@ -3,8 +3,9 @@ using Src.Models.Users.Infra.Repositories;
 
 namespace Src.Models.Users.UseCases;
 
-public class UpdateUserUseCase {
-  private IUserRepository _usersRepository;
+public class UpdateUserUseCase 
+{
+  private readonly IUserRepository _usersRepository;
   public UpdateUserUseCase(IUserRepository usersRepository)
   {
     _usersRepository = usersRepository;

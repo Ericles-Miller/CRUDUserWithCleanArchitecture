@@ -3,9 +3,11 @@ using Src.Models.Users.Infra.Repositories;
 namespace Src.Models.Users.UseCases;
 public class CreateUserUseCase 
 {
-  private IUserRepository _usersRepository;
+  private readonly IUserRepository _usersRepository;
   public CreateUserUseCase(IUserRepository userRepository)
-  { _usersRepository = userRepository; }
+  { 
+    _usersRepository = userRepository; 
+  }
 
   public async Task Execute(User user)
   {

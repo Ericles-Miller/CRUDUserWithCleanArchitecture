@@ -5,8 +5,7 @@ namespace Src.Models.Users.UseCases;
 
 public class ListUsersUseCase 
 { 
-  private IUserRepository _usersRepository;
-
+  private readonly IUserRepository _usersRepository;
   public ListUsersUseCase(IUserRepository usersRepository)
   {
     _usersRepository = usersRepository;
